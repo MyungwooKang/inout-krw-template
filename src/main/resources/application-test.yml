@@ -1,0 +1,18 @@
+server:
+  port: 80
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: inoutkrw  # local 이랑 동일한 설정정보인데, schema 등 변경할 필요가 있음
+    password: 1234
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+config:
+  clients:
+    settle-bank:
+      base-url: https://settle-base-url.com
+  test:
+    wiremock:
+      port: 9561

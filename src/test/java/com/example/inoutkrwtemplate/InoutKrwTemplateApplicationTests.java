@@ -9,5 +9,4 @@ class InoutKrwTemplateApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }
