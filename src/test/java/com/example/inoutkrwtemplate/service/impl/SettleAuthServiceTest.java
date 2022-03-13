@@ -8,6 +8,7 @@ import com.example.inoutkrwtemplate.repository.SettleRequestDataRepository;
 import com.example.inoutkrwtemplate.repository.entity.SettleRequestData;
 import com.example.inoutkrwtemplate.repository.enums.ReceiveFlag;
 import com.example.inoutkrwtemplate.repository.enums.SendFlag;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,6 +40,7 @@ class SettleAuthServiceTest {
     private TestProperties properties;
 
     @Test
+    @DisplayName("서비스 메소드 테스트 예제")
     void sampleAuth_정상처리() throws Exception {
         //given
         String testParam = "test";
@@ -68,5 +70,6 @@ class SettleAuthServiceTest {
 
         //then
         assertThat(settleRequestData).isEqualTo(testPostVo);
+        //TODO ... .assertThat()
     }
 }

@@ -44,7 +44,7 @@ class AuthControllerTest {
     private TestProperties properties;
 
     @Test
-    @DisplayName("인증 요청 API")
+    @DisplayName("컨트롤러 테스트 예제")
     void sampleAuth() throws Exception {
         //given
         String testParam = "test";

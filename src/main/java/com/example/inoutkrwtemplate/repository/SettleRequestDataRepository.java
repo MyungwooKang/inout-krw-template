@@ -14,7 +14,7 @@ import java.util.List;
 public interface SettleRequestDataRepository extends JpaRepository<SettleRequestData, Long> {
     /**
      * TODO
-     * 1. DB파트 검수 등의 사유로 기존 검증쿼리 이용상항에는 native 또는 jpql 사용이 좋을것 같은데.. 생각해봐야할듯.
+     * 1. DB파트 검수 등의 사유로 기존 검증된 쿼리 재사용시에는 native 또는 jpql 사용이 좋을것 같은데.. 생각해봐야할듯.
      * 2. Vo 매핑 방식 vs Projection ?
      */
 

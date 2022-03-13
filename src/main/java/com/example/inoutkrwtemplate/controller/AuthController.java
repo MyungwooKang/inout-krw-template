@@ -37,7 +37,7 @@ public class AuthController {
         try {
             settleRequestData = authService.sampleAuth(authRequest.getUsername());
         } catch (ExternalServiceException e) {
-            return ResponseEntity.status(404)
+            return ResponseEntity.status(404) // error example
                                  .body(new ApiResponse(new ApiError(ErrorCode.BADREQUEST_1)));
         }
 

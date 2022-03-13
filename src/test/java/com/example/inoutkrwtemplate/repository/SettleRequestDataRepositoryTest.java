@@ -5,6 +5,7 @@ import com.example.inoutkrwtemplate.repository.entity.SettleRequestData;
 import com.example.inoutkrwtemplate.repository.enums.ReceiveFlag;
 import com.example.inoutkrwtemplate.repository.enums.SendFlag;
 import com.example.inoutkrwtemplate.repository.vo.SampleSpecialColumnSelectVo;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -22,8 +23,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ActiveProfiles("test")
 @DataJpaTest
-@Transactional(propagation = Propagation.NOT_SUPPORTED)  // 트랜잭션 설정이 필요 없는 경우
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // 해당 설정이 없으면 자동으로 inmemory db 테스트를 진행하며, h2 db등의 추가 설정이 필요함. 근데 oracle 종속적인 부분이 있기 때문에 off 설정함.
+//@Transactional(propagation = Propagation.NOT_SUPPORTED)  // 트랜잭션 설정이 필요 없는 경우.
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // real db 테스트를 위해 설정.
 @Import(TestProperties.class)
 class SettleRequestDataRepositoryTest {
 
@@ -34,6 +35,7 @@ class SettleRequestDataRepositoryTest {
     private TestProperties properties;
 
     @Test
+    @DisplayName("JPA 테스트 예제 : 특정 칼럼 조회 쿼리")
     void findProjectionsBySendFlag() {
         //given
         String testParam = "tester";
@@ -44,7 +46,6 @@ class SettleRequestDataRepositoryTest {
                                                    .receiveFlag(ReceiveFlag.OPENED)
                                                    .userName(testParam)
                                                    .requestRegDt(new Timestamp((new Date()).getTime())).build();
-
         repository.save(entity);
 
         //when
@@ -53,5 +54,6 @@ class SettleRequestDataRepositoryTest {
         //then
         assertThat(projectionsBySendFlag.size()).isEqualTo(1);
         assertThat(projectionsBySendFlag.get(0).getUserName()).isEqualTo(testParam);
+        //TODO ... .assertThat()
     }
 }

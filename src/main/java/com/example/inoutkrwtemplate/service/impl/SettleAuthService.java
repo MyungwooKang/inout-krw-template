@@ -40,11 +40,11 @@ public class SettleAuthService implements AuthService {
         try {
             log.info("세틀뱅크 인증 요청 API 실행");
             settleBankKakaoAuthResponse = settleKakaoAuth();
-            log.debug("인증요청 정상 전송 완료. {}", settleBankKakaoAuthResponse);
+            log.debug("인증요청 완료. {}", settleBankKakaoAuthResponse);
         } catch (Exception e) {
             newSettleRequestData.setReceiveFlag(ReceiveFlag.FAILED);
             settleRequestDataRepository.save(newSettleRequestData);
-            throw new ExternalServiceException("에러발생 에러발생");
+            throw new ExternalServiceException("에러 ex");
         }
 
         newSettleRequestData.setSendFlag(SendFlag.DONE);
@@ -56,11 +56,11 @@ public class SettleAuthService implements AuthService {
         SettleBankKakaoAuthRequest settleBankKakaoAuthRequest = new SettleBankKakaoAuthRequest();
 
         //TODO 런타임 테스트 하고싶으면 아래 주석 처리 후 61~63번 라인 주석해제해서 사용.
-//        return settleBankClient.kakaoAuth(settleBankKakaoAuthRequest);
+        return settleBankClient.kakaoAuth(settleBankKakaoAuthRequest);
 
-        SettleBankKakaoAuthResponse settleBankKakaoAuthResponse = new SettleBankKakaoAuthResponse();
-        settleBankKakaoAuthResponse.setSampleField("sample success");
-        return settleBankKakaoAuthResponse;
+//        SettleBankKakaoAuthResponse settleBankKakaoAuthResponse = new SettleBankKakaoAuthResponse();
+//        settleBankKakaoAuthResponse.setSampleField("sample success");
+//        return settleBankKakaoAuthResponse;
     }
 
     @Override
